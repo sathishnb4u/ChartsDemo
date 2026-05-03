@@ -4,6 +4,12 @@ import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 import surveillanceData from '@/data/surveillance.json';
 
+interface TreemapData {
+  name: string;
+  value?: number;
+  children?: TreemapData[];
+}
+
 const SourceTreemap = () => {
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -16,14 +22,16 @@ const SourceTreemap = () => {
     const width = svgRef.current.clientWidth;
     const height = 400;
 
-    const root = d3.hierarchy<any>(surveillanceData.treemapData)
+    const treemapRoot = d3.hierarchy<TreemapData>(surveillanceData.treemapData as TreemapData)
       .sum((d: { value?: number }) => d.value || 0)
       .sort((a, b) => (b.value || 0) - (a.value || 0));
 
-    d3.treemap()
+    d3.treemap<TreemapData>()
       .size([width, height])
       .padding(2)
-      (root);
+      (treemapRoot);
+
+    const root = treemapRoot as d3.HierarchyRectangularNode<TreemapData>;
 
     const color = d3.scaleOrdinal()
       .domain(['Environmental', 'Clinical', 'Genomic Variants'])
@@ -37,13 +45,13 @@ const SourceTreemap = () => {
       .data(root.leaves())
       .enter()
       .append('g')
-      .attr('transform', (d: any) => `translate(${d.x0},${d.y0})`);
+      .attr('transform', (d: d3.HierarchyRectangularNode<TreemapData>) => `translate(${d.x0},${d.y0})`);
 
     nodes.append('rect')
-      .attr('width', (d: any) => d.x1 - d.x0)
-      .attr('height', (d: any) => d.y1 - d.y0)
-      .attr('fill', (d: any) => color(d.parent?.data.name || '') as string)
-      .attr('stroke', (d: any) => stroke(d.parent?.data.name || '') as string)
+      .attr('width', (d: d3.HierarchyRectangularNode<TreemapData>) => d.x1 - d.x0)
+      .attr('height', (d: d3.HierarchyRectangularNode<TreemapData>) => d.y1 - d.y0)
+      .attr('fill', (d: d3.HierarchyRectangularNode<TreemapData>) => color(d.parent?.data.name || '') as string)
+      .attr('stroke', (d: d3.HierarchyRectangularNode<TreemapData>) => stroke(d.parent?.data.name || '') as string)
       .attr('stroke-width', 1);
 
     nodes.append('text')
@@ -57,7 +65,7 @@ const SourceTreemap = () => {
     nodes.append('text')
       .attr('x', 5)
       .attr('y', 30)
-      .text((d: any) => d.value ?? '')
+      .text((d: d3.HierarchyRectangularNode<TreemapData>) => d.value ?? '')
       .attr('font-size', '10px')
       .attr('fill', '#8ba3c7');
 

@@ -9,6 +9,12 @@ interface PathogenChartProps {
   onPathogenSelect: (name: string | null) => void;
 }
 
+interface EChartEventParams {
+  componentType?: string;
+  seriesName?: string;
+  selected?: Record<string, boolean>;
+}
+
 const PathogenChart = ({ selectedPathogen, onPathogenSelect }: PathogenChartProps) => {
   const options = {
     backgroundColor: 'transparent',
@@ -79,14 +85,15 @@ const PathogenChart = ({ selectedPathogen, onPathogenSelect }: PathogenChartProp
   };
 
   const onEvents = {
-    'click': (params: any) => {
+    'click': (params: EChartEventParams) => {
       if (params.componentType === 'series') {
-        onPathogenSelect(params.seriesName === selectedPathogen ? null : params.seriesName);
+        const name = params.seriesName ?? null;
+        onPathogenSelect(name === selectedPathogen ? null : name);
       }
     },
-    'legendselectchanged': (params: any) => {
+    'legendselectchanged': (params: EChartEventParams) => {
       // We'll just track the selection but ECharts handles visibility
-      const selected = params.selected;
+      const selected = params.selected || {};
       const visibleNames = Object.keys(selected).filter(name => selected[name]);
       if (visibleNames.length === 1) {
         onPathogenSelect(visibleNames[0]);
