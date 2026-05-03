@@ -37,13 +37,13 @@ const SourceTreemap = () => {
       .data(root.leaves())
       .enter()
       .append('g')
-      .attr('transform', d => `translate(${d.x0},${d.y0})`);
+      .attr('transform', (d: any) => `translate(${d.x0},${d.y0})`);
 
     nodes.append('rect')
-      .attr('width', d => d.x1 - d.x0)
-      .attr('height', d => d.y1 - d.y0)
-      .attr('fill', d => color(d.parent?.data.name || '') as string)
-      .attr('stroke', d => stroke(d.parent?.data.name || '') as string)
+      .attr('width', (d: any) => d.x1 - d.x0)
+      .attr('height', (d: any) => d.y1 - d.y0)
+      .attr('fill', (d: any) => color(d.parent?.data.name || '') as string)
+      .attr('stroke', (d: any) => stroke(d.parent?.data.name || '') as string)
       .attr('stroke-width', 1);
 
     nodes.append('text')
@@ -57,7 +57,7 @@ const SourceTreemap = () => {
     nodes.append('text')
       .attr('x', 5)
       .attr('y', 30)
-      .text(d => d.value)
+      .text((d: any) => d.value ?? '')
       .attr('font-size', '10px')
       .attr('fill', '#8ba3c7');
 
