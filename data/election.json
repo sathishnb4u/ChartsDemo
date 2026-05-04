@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "total_seats": 234,
+    "majority_mark": 118,
+    "last_updated": "2026-05-04 10:43:12"
+  },
+  "party_wise": [
+    { "party": "TVK", "won": 89, "leading": 18, "total": 107, "color": "#ff42b3", "fullName": "Tamilaga Vettri Kazhagam" },
+    { "party": "DMK", "won": 46, "leading": 14, "total": 60, "color": "#ffb800", "fullName": "Dravida Munnetra Kazhagam" },
+    { "party": "ADMK", "won": 40, "leading": 7, "total": 47, "color": "#00f29b", "fullName": "All India Anna Dravida Munnetra Kazhagam" },
+    { "party": "INC", "won": 5, "leading": 0, "total": 5, "color": "#00d4ff", "fullName": "Indian National Congress" },
+    { "party": "PMK", "won": 4, "leading": 0, "total": 4, "color": "#7042ff", "fullName": "Pattali Makkal Katchi" },
+    { "party": "IUML", "won": 2, "leading": 0, "total": 2, "color": "#2d3748", "fullName": "Indian Union Muslim League" },
+    { "party": "CPI", "won": 2, "leading": 0, "total": 2, "color": "#e53e3e", "fullName": "Communist Party of India" },
+    { "party": "VCK", "won": 2, "leading": 0, "total": 2, "color": "#805ad5", "fullName": "Viduthalai Chiruthaigal Katchi" },
+    { "party": "CPI(M)", "won": 2, "leading": 0, "total": 2, "color": "#c53030", "fullName": "Communist Party of India (Marxist)" },
+    { "party": "BJP", "won": 1, "leading": 0, "total": 1, "color": "#f6ad55", "fullName": "Bharatiya Janata Party" },
+    { "party": "DMDK", "won": 1, "leading": 0, "total": 1, "color": "#4299e1", "fullName": "Desiya Murpokku Dravida Kazhagam" },
+    { "party": "AMMK", "won": 1, "leading": 0, "total": 1, "color": "#48bb78", "fullName": "Amma Makkal Munnettra Kazhagam" }
+  ],
+  "vote_share": [
+    { "party": "TVK", "share": 34.92 },
+    { "party": "DMK", "share": 24.20 },
+    { "party": "ADMK", "share": 21.26 },
+    { "party": "NTK", "share": 4.00 },
+    { "party": "INC", "share": 3.37 },
+    { "party": "BJP", "share": 2.98 },
+    { "party": "Others", "share": 9.27 }
+  ],
+  "age_demographics": [
+    { "group": "18-19", "percentage": 3.5 },
+    { "group": "20-29", "percentage": 18.4 },
+    { "group": "30-39", "percentage": 21.6 },
+    { "group": "40-49", "percentage": 19.5 },
+    { "group": "50-59", "percentage": 13.9 },
+    { "group": "60+", "percentage": 23.1 }
+  ],
+  "age_vote_share": [
+    { "group": "18-19", "TVK": 52, "DMK": 18, "ADMK": 12, "NTK": 10, "Others": 8 },
+    { "group": "20-29", "TVK": 48, "DMK": 20, "ADMK": 15, "NTK": 12, "Others": 5 },
+    { "group": "30-39", "TVK": 38, "DMK": 25, "ADMK": 22, "NTK": 8, "Others": 7 },
+    { "group": "40-49", "TVK": 30, "DMK": 28, "ADMK": 25, "NTK": 5, "Others": 12 },
+    { "group": "50-59", "TVK": 25, "DMK": 32, "ADMK": 30, "NTK": 3, "Others": 10 },
+    { "group": "60+", "TVK": 20, "DMK": 35, "ADMK": 32, "NTK": 2, "Others": 11 }
+  ],
+  "regional_heatmap": [
+    { "region": "North", "intensity": 85, "majority_party": "TVK" },
+    { "region": "South", "intensity": 65, "majority_party": "DMK" },
+    { "region": "West", "intensity": 75, "majority_party": "ADMK" },
+    { "region": "East", "intensity": 90, "majority_party": "TVK" },
+    { "region": "Central", "intensity": 70, "majority_party": "TVK" }
+  ]
+}

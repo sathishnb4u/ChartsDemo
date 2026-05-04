@@ -11,8 +11,15 @@ import PipelineFunnel from '@/components/Charts/PipelineFunnel';
 import AQICandlestick from '@/components/Charts/AQICandlestick';
 import DataFlowSankey from '@/components/Charts/DataFlowSankey';
 import SourceTreemap from '@/components/Charts/SourceTreemap';
-import { TrendingUp, Users, Droplets, FlaskConical, Cpu, Layers, BarChart3, Activity, Microscope, Info, Terminal, Database, Palette, Zap } from 'lucide-react';
+import { TrendingUp, Users, Droplets, FlaskConical, Cpu, Layers, BarChart3, Activity, Microscope, Info, Terminal, Database, Palette, Zap, RefreshCw, Vote, Trophy, Gavel, Map as MapIcon } from 'lucide-react';
 import surveillanceData from '@/data/surveillance.json';
+import electionData from '@/data/election.json';
+
+// Election Components
+import MajoritySimulator from '@/components/Election/MajoritySimulator';
+import { VoteShareChart, PartyDominationChart } from '@/components/Election/ElectionSummaryCharts';
+import { AgeVoterDistribution, AgeGroupPartyShare } from '@/components/Election/AgeAnalysisCharts';
+import RegionalHeatmap from '@/components/Election/RegionalHeatmap';
 
 interface StatCardProps {
   title: string;
@@ -219,6 +226,78 @@ export default function Home() {
             <div className="col-span-12 lg:col-span-4 glass-card p-8 flex flex-col justify-center bg-secondary/5">
               <h3 className="text-xl font-bold mb-4 text-secondary">Geospatial Intelligence</h3>
               <p className="text-sm text-text-muted leading-relaxed">Mapping pathogen distribution across Wisconsin counties using custom D3-geo projections.</p>
+            </div>
+          </div>
+        );
+      case 'election':
+        return (
+          <div className="col-span-12 grid grid-cols-12 gap-8">
+            {/* Header & Refresh */}
+            <div className="col-span-12 flex flex-col md:flex-row md:items-center justify-between gap-6 mb-4">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2 bg-primary/10 text-primary rounded-lg"><Vote size={24} /></div>
+                  <h2 className="text-3xl font-black tracking-tighter">TN ELECTION 2026</h2>
+                  <span className="badge badge-success animate-pulse">LIVE RESULTS</span>
+                </div>
+                <p className="text-text-muted font-medium flex items-center gap-2">
+                  <Database size={14} /> Source: Election Commission of India (Official)
+                </p>
+              </div>
+              <button 
+                onClick={() => {
+                  alert('Refreshing data from ECI servers...');
+                  // In a real app, this would re-fetch election.json
+                }}
+                className="flex items-center gap-3 px-6 py-3 bg-surface hover:bg-surface-hover border border-border rounded-2xl transition-all font-bold text-sm group"
+              >
+                <RefreshCw size={18} className="group-active:rotate-180 transition-transform duration-500" />
+                REFRESH ECI DATA
+              </button>
+            </div>
+
+            {/* Key Stats */}
+            <div className="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-6">
+              <StatCard title="Lead Party (TVK)" value="107 / 234" trend="+TVK" icon={<Trophy size={24} />} color="#ff42b3" />
+              <StatCard title="Majority Mark" value="118 Seats" trend="Fixed" icon={<Gavel size={24} />} color="#7042ff" />
+              <StatCard title="Voter Turnout" value="78.4%" trend="+4.2%" icon={<Users size={24} />} color="#00d4ff" />
+              <StatCard title="Result Status" value="In Progress" trend="85% Decided" icon={<Activity size={24} />} color="#ffb800" />
+            </div>
+
+            {/* Main Section: Majority Simulator */}
+            <div className="col-span-12 lg:col-span-6">
+              <MajoritySimulator />
+            </div>
+
+            {/* Side Section: Summary Charts */}
+            <div className="col-span-12 lg:col-span-6 grid grid-cols-1 gap-6">
+              <VoteShareChart />
+              <PartyDominationChart />
+            </div>
+
+            {/* Heatmap Section */}
+            <div className="col-span-12">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold flex items-center gap-2"><MapIcon size={20} className="text-secondary" /> Regional Majority Heatmap</h2>
+                <TechBadge tech="D3" />
+              </div>
+              <RegionalHeatmap />
+            </div>
+
+            {/* Age Analysis Section */}
+            <div className="col-span-12 lg:col-span-6">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold flex items-center gap-2"><Users size={20} className="text-primary" /> Age Demographics</h2>
+                <TechBadge tech="ECharts" />
+              </div>
+              <AgeVoterDistribution />
+            </div>
+            <div className="col-span-12 lg:col-span-6">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold flex items-center gap-2"><BarChart3 size={20} className="text-secondary" /> Party Share by Age</h2>
+                <TechBadge tech="ECharts" />
+              </div>
+              <AgeGroupPartyShare />
             </div>
           </div>
         );

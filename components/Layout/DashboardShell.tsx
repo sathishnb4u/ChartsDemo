@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Activity, Shield, Map as MapIcon, BarChart3, Database, Search, Settings, Droplets, Users } from 'lucide-react';
+import { Activity, Shield, Map as MapIcon, BarChart3, Database, Search, Settings, Droplets, Users, Zap, RefreshCw } from 'lucide-react';
 
 export const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setActiveTab: (t: string) => void }) => {
   const items = [
@@ -11,6 +11,7 @@ export const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setAct
     { id: 'public-health', icon: <Users size={20} />, label: 'Public Health' },
     { id: 'analytics', icon: <BarChart3 size={20} />, label: 'Analytics' },
     { id: 'labkey', icon: <Database size={20} />, label: 'Lab Metrics' },
+    { id: 'election', icon: <Zap size={20} />, label: 'TN Election 2026' },
     { id: 'about', icon: <Shield size={20} />, label: 'About Portal' },
   ];
 
@@ -72,6 +73,13 @@ export const Header = () => {
           <p className="text-sm font-mono text-success font-bold">MAY 02, 2026 - 14:21 CST</p>
         </div>
         <div className="w-px h-8 bg-border mx-2"></div>
+        <button 
+          onClick={() => alert('Refreshing data from external sources...')}
+          className="flex items-center gap-2 bg-surface hover:bg-surface-hover border border-border text-foreground font-bold px-4 py-2 rounded-lg text-sm transition-all group"
+        >
+          <RefreshCw size={16} className="group-active:rotate-180 transition-transform duration-500" />
+          Refresh Data
+        </button>
         <button className="bg-primary text-background font-bold px-4 py-2 rounded-lg text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20">
           Export Report
         </button>
