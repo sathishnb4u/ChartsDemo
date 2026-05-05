@@ -20,6 +20,7 @@ import MajoritySimulator from '@/components/Election/MajoritySimulator';
 import { VoteShareChart, PartyDominationChart } from '@/components/Election/ElectionSummaryCharts';
 import { AgeVoterDistribution, AgeGroupPartyShare } from '@/components/Election/AgeAnalysisCharts';
 import RegionalHeatmap from '@/components/Election/RegionalHeatmap';
+import ConstituencyMap from '@/components/Election/ConstituencyMap';
 
 interface StatCardProps {
   title: string;
@@ -78,7 +79,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-4">Regional Alert Status</h3>
                 <div className="space-y-4">
                   {surveillanceData.geo.slice(0, 6).map((region, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-surface-hover/50 border border-border/50">
+                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-surface-hover border border-soft">
                       <div><p className="text-sm font-bold">{region.county} County</p><p className="text-[10px] text-text-muted uppercase tracking-wider">{region.trend} TREND</p></div>
                       <span className={`badge ${region.viral_level === 'High' ? 'badge-danger' : 'badge-success'}`}>{region.viral_level}</span>
                     </div>
@@ -198,19 +199,19 @@ export default function Home() {
                   <h3 className="text-xl font-bold">Data & Page Logic</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-surface-hover/50 border border-border">
+                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
                     <h4 className="text-sm font-bold mb-1">Surveillance Page</h4>
                     <p className="text-xs text-text-muted">Real-time pathogen tracking (ECharts) + Variant wave modeling (D3).</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-surface-hover/50 border border-border">
+                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
                     <h4 className="text-sm font-bold mb-1">Environmental Page</h4>
                     <p className="text-xs text-text-muted">Air quality index analysis using Candlestick and Density Heatmaps.</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-surface-hover/50 border border-border">
+                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
                     <h4 className="text-sm font-bold mb-1">Public Health Page</h4>
                     <p className="text-xs text-text-muted">Clinical-Environmental correlation with mathematical regression plotting.</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-surface-hover/50 border border-border">
+                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
                     <h4 className="text-sm font-bold mb-1">Lab Metrics Page</h4>
                     <p className="text-xs text-text-muted">Throughput analysis using Funnel and Sankey flow diagrams.</p>
                   </div>
@@ -247,9 +248,8 @@ export default function Home() {
               <button 
                 onClick={() => {
                   alert('Refreshing data from ECI servers...');
-                  // In a real app, this would re-fetch election.json
                 }}
-                className="flex items-center gap-3 px-6 py-3 bg-surface hover:bg-surface-hover border border-border rounded-2xl transition-all font-bold text-sm group"
+                className="flex items-center gap-3 px-6 py-3 bg-primary text-white hover:opacity-90 rounded-2xl transition-all font-bold text-sm group shadow-lg shadow-primary/20"
               >
                 <RefreshCw size={18} className="group-active:rotate-180 transition-transform duration-500" />
                 REFRESH ECI DATA
@@ -298,6 +298,15 @@ export default function Home() {
                 <TechBadge tech="ECharts" />
               </div>
               <AgeGroupPartyShare />
+            </div>
+
+            {/* Constituency Map Section */}
+            <div className="col-span-12 mt-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold flex items-center gap-2"><MapIcon size={20} className="text-primary" /> Constituency Strength Map</h2>
+                <TechBadge tech="D3" />
+              </div>
+              <ConstituencyMap />
             </div>
           </div>
         );

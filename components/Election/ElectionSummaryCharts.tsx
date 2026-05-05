@@ -9,29 +9,31 @@ export const VoteShareChart = () => {
     backgroundColor: 'transparent',
     tooltip: {
       trigger: 'item',
-      formatter: '{b}: {c}%',
-      backgroundColor: '#151c2c',
-      borderColor: '#2d3748',
-      textStyle: { color: '#f0f4f8' }
+      formatter: '{b}: <span style="font-weight:900">{c}%</span>',
+      backgroundColor: '#ffffff',
+      borderColor: '#e2e8f0',
+      borderWidth: 1,
+      textStyle: { color: '#0f172a', fontSize: 14 }
     },
     legend: {
       orient: 'vertical',
-      right: '5%',
+      right: '2%',
       top: 'center',
-      textStyle: { color: '#8ba3c7', fontSize: 10 },
-      itemWidth: 10,
-      itemHeight: 10
+      textStyle: { color: '#64748b', fontSize: 11, fontWeight: 'bold' },
+      itemWidth: 12,
+      itemHeight: 12,
+      padding: 10
     },
     series: [
       {
         name: 'Vote Share',
         type: 'pie',
-        radius: ['50%', '80%'],
-        center: ['40%', '50%'],
-        avoidLabelOverlap: false,
+        radius: ['45%', '75%'],
+        center: ['35%', '50%'],
+        avoidLabelOverlap: true,
         itemStyle: {
-          borderRadius: 10,
-          borderColor: '#151c2c',
+          borderRadius: 8,
+          borderColor: '#ffffff',
           borderWidth: 2
         },
         label: {
@@ -39,31 +41,34 @@ export const VoteShareChart = () => {
           position: 'center'
         },
         emphasis: {
+          scale: true,
           label: {
             show: true,
-            fontSize: 20,
-            fontWeight: 'bold',
-            color: '#fff',
+            fontSize: 24,
+            fontWeight: '900',
+            color: '#0f172a',
             formatter: '{d}%'
           }
         },
         labelLine: {
           show: false
         },
-        data: electionData.vote_share.map(v => ({
-          value: v.share,
-          name: v.party,
-          itemStyle: { 
-            color: electionData.party_wise.find(p => p.party === v.party)?.color || '#2d3748' 
-          }
-        }))
+        data: electionData.vote_share.map(v => {
+          const party = electionData.party_wise.find(p => p.party === v.party) || 
+                        { party: 'NTK', color: '#F1C40F' };
+          return {
+            value: v.share,
+            name: v.party,
+            itemStyle: { color: v.party === 'Others' ? '#94a3b8' : party.color }
+          };
+        })
       }
     ]
   };
 
   return (
-    <div className="glass-card p-6 h-[400px]">
-      <h3 className="text-lg font-bold mb-6">Vote Share Analysis</h3>
+    <div className="glass-card p-6 h-[400px] border-l-8 border-primary">
+      <h3 className="text-xl font-black text-foreground mb-6 tracking-tight uppercase">Vote Share Analysis</h3>
       <ReactECharts option={options} style={{ height: '300px' }} />
     </div>
   );
@@ -77,39 +82,51 @@ export const PartyDominationChart = () => {
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'shadow' },
-      backgroundColor: '#151c2c',
-      borderColor: '#2d3748',
-      textStyle: { color: '#f0f4f8' }
+      backgroundColor: '#ffffff',
+      borderColor: '#e2e8f0',
+      textStyle: { color: '#0f172a' }
     },
     grid: {
       left: '3%',
-      right: '4%',
+      right: '8%',
       bottom: '3%',
-      top: '10%',
+      top: '5%',
       containLabel: true
     },
     xAxis: {
       type: 'value',
       axisLine: { show: false },
-      axisLabel: { color: '#8ba3c7', fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(45, 55, 72, 0.2)' } }
+      axisLabel: { color: '#64748b', fontSize: 10, fontWeight: 'bold' },
+      splitLine: { lineStyle: { color: '#e2e8f0' } }
     },
     yAxis: {
       type: 'category',
       data: sortedParties.map(p => p.party),
-      axisLine: { lineStyle: { color: '#2d3748' } },
-      axisLabel: { color: '#f0f4f8', fontWeight: 'bold' }
+      axisLine: { lineStyle: { color: '#cbd5e1' } },
+      axisLabel: { 
+        color: '#0f172a', 
+        fontWeight: '900',
+        fontSize: 12
+      }
     },
     series: [
       {
         name: 'Won',
         type: 'bar',
         stack: 'total',
+        barWidth: '60%',
         data: sortedParties.map(p => ({
           value: p.won,
           itemStyle: { color: p.color }
         })),
-        label: { show: false }
+        label: { 
+          show: true, 
+          position: 'insideLeft',
+          formatter: '{c}',
+          color: '#fff',
+          fontWeight: 'bold',
+          fontSize: 10
+        }
       },
       {
         name: 'Leading',
@@ -117,18 +134,34 @@ export const PartyDominationChart = () => {
         stack: 'total',
         data: sortedParties.map(p => ({
           value: p.leading,
-          itemStyle: { color: p.color + '88' }
+          itemStyle: { 
+            color: p.color,
+            opacity: 0.6,
+            decal: {
+              symbol: 'rect',
+              dash: [4, 4],
+              rotation: 45
+            }
+          }
         })),
         itemStyle: {
-          borderRadius: [0, 5, 5, 0]
+          borderRadius: [0, 4, 4, 0]
+        },
+        label: {
+          show: true,
+          position: 'right',
+          formatter: (params: any) => params.value > 0 ? `+${params.value}` : '',
+          color: '#64748b',
+          fontSize: 10,
+          fontWeight: 'bold'
         }
       }
     ]
   };
 
   return (
-    <div className="glass-card p-6 h-[400px]">
-      <h3 className="text-lg font-bold mb-6">Party-wise Domination (Seats)</h3>
+    <div className="glass-card p-6 h-[400px] border-l-8 border-secondary">
+      <h3 className="text-xl font-black text-foreground mb-6 tracking-tight uppercase">Party-wise Domination</h3>
       <ReactECharts option={options} style={{ height: '300px' }} />
     </div>
   );

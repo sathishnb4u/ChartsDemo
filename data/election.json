@@ -2,52 +2,67 @@
   "summary": {
     "total_seats": 234,
     "majority_mark": 118,
-    "last_updated": "2026-05-04 10:43:12"
+    "status": "Counting in Progress",
+    "last_updated": "2026-05-04 16:30:00"
   },
   "party_wise": [
-    { "party": "TVK", "won": 89, "leading": 18, "total": 107, "color": "#ff42b3", "fullName": "Tamilaga Vettri Kazhagam" },
-    { "party": "DMK", "won": 46, "leading": 14, "total": 60, "color": "#ffb800", "fullName": "Dravida Munnetra Kazhagam" },
-    { "party": "ADMK", "won": 40, "leading": 7, "total": 47, "color": "#00f29b", "fullName": "All India Anna Dravida Munnetra Kazhagam" },
-    { "party": "INC", "won": 5, "leading": 0, "total": 5, "color": "#00d4ff", "fullName": "Indian National Congress" },
-    { "party": "PMK", "won": 4, "leading": 0, "total": 4, "color": "#7042ff", "fullName": "Pattali Makkal Katchi" },
-    { "party": "IUML", "won": 2, "leading": 0, "total": 2, "color": "#2d3748", "fullName": "Indian Union Muslim League" },
-    { "party": "CPI", "won": 2, "leading": 0, "total": 2, "color": "#e53e3e", "fullName": "Communist Party of India" },
-    { "party": "VCK", "won": 2, "leading": 0, "total": 2, "color": "#805ad5", "fullName": "Viduthalai Chiruthaigal Katchi" },
-    { "party": "CPI(M)", "won": 2, "leading": 0, "total": 2, "color": "#c53030", "fullName": "Communist Party of India (Marxist)" },
-    { "party": "BJP", "won": 1, "leading": 0, "total": 1, "color": "#f6ad55", "fullName": "Bharatiya Janata Party" },
-    { "party": "DMDK", "won": 1, "leading": 0, "total": 1, "color": "#4299e1", "fullName": "Desiya Murpokku Dravida Kazhagam" },
-    { "party": "AMMK", "won": 1, "leading": 0, "total": 1, "color": "#48bb78", "fullName": "Amma Makkal Munnettra Kazhagam" }
+    { "party": "TVK", "fullName": "Tamizhaga Vettri Kazhagam", "won": 72, "leading": 13, "total": 85, "color": "#9E3A59", "vote_share": 31.2 },
+    { "party": "DMK", "fullName": "Dravida Munnetra Kazhagam", "won": 54, "leading": 8, "total": 62, "color": "#C75252", "vote_share": 25.4 },
+    { "party": "ADMK", "fullName": "All India Anna Dravida Munnetra Kazhagam", "won": 42, "leading": 6, "total": 48, "color": "#2E9362", "vote_share": 21.6 },
+    { "party": "DMDK", "fullName": "Desiya Murpokku Dravida Kazhagam", "won": 10, "leading": 2, "total": 12, "color": "#FFD700", "vote_share": 5.8 },
+    { "party": "NTK", "fullName": "Naam Tamilar Katchi", "won": 8, "leading": 2, "total": 10, "color": "#F1C40F", "vote_share": 7.2 },
+    { "party": "INC", "fullName": "Indian National Congress", "won": 8, "leading": 2, "total": 10, "color": "#4C78A8", "vote_share": 4.5 },
+    { "party": "BJP", "fullName": "Bharatiya Janata Party", "won": 5, "leading": 2, "total": 7, "color": "#F58518", "vote_share": 4.3 }
   ],
   "vote_share": [
-    { "party": "TVK", "share": 34.92 },
-    { "party": "DMK", "share": 24.20 },
-    { "party": "ADMK", "share": 21.26 },
-    { "party": "NTK", "share": 4.00 },
-    { "party": "INC", "share": 3.37 },
-    { "party": "BJP", "share": 2.98 },
-    { "party": "Others", "share": 9.27 }
+    { "party": "TVK", "share": 31.2 },
+    { "party": "DMK", "share": 25.4 },
+    { "party": "ADMK", "share": 21.6 },
+    { "party": "NTK", "share": 7.2 },
+    { "party": "DMDK", "share": 5.8 },
+    { "party": "Others", "share": 8.8 }
   ],
   "age_demographics": [
-    { "group": "18-19", "percentage": 3.5 },
-    { "group": "20-29", "percentage": 18.4 },
-    { "group": "30-39", "percentage": 21.6 },
-    { "group": "40-49", "percentage": 19.5 },
-    { "group": "50-59", "percentage": 13.9 },
-    { "group": "60+", "percentage": 23.1 }
+    { "group": "18-25", "percentage": 24, "color": "#2563eb" },
+    { "group": "26-35", "percentage": 30, "color": "#3b82f6" },
+    { "group": "36-45", "percentage": 22, "color": "#60a5fa" },
+    { "group": "46-60", "percentage": 16, "color": "#93c5fd" },
+    { "group": "60+", "percentage": 8, "color": "#bfdbfe" }
   ],
   "age_vote_share": [
-    { "group": "18-19", "TVK": 52, "DMK": 18, "ADMK": 12, "NTK": 10, "Others": 8 },
-    { "group": "20-29", "TVK": 48, "DMK": 20, "ADMK": 15, "NTK": 12, "Others": 5 },
-    { "group": "30-39", "TVK": 38, "DMK": 25, "ADMK": 22, "NTK": 8, "Others": 7 },
-    { "group": "40-49", "TVK": 30, "DMK": 28, "ADMK": 25, "NTK": 5, "Others": 12 },
-    { "group": "50-59", "TVK": 25, "DMK": 32, "ADMK": 30, "NTK": 3, "Others": 10 },
-    { "group": "60+", "TVK": 20, "DMK": 35, "ADMK": 32, "NTK": 2, "Others": 11 }
+    { "group": "18-25", "TVK": 58, "DMK": 12, "ADMK": 8, "NTK": 15, "Others": 7 },
+    { "group": "26-35", "TVK": 42, "DMK": 20, "ADMK": 15, "NTK": 12, "Others": 11 },
+    { "group": "36-45", "TVK": 28, "DMK": 30, "ADMK": 25, "NTK": 8, "Others": 9 },
+    { "group": "46-60", "TVK": 18, "DMK": 35, "ADMK": 32, "NTK": 5, "Others": 10 },
+    { "group": "60+", "TVK": 12, "DMK": 38, "ADMK": 38, "NTK": 2, "Others": 10 }
   ],
   "regional_heatmap": [
-    { "region": "North", "intensity": 85, "majority_party": "TVK" },
-    { "region": "South", "intensity": 65, "majority_party": "DMK" },
-    { "region": "West", "intensity": 75, "majority_party": "ADMK" },
-    { "region": "East", "intensity": 90, "majority_party": "TVK" },
-    { "region": "Central", "intensity": 70, "majority_party": "TVK" }
+    { "region": "North", "intensity": 90, "majority_party": "TVK", "color": "#9E3A59" },
+    { "region": "Central", "intensity": 65, "majority_party": "DMK", "color": "#C75252" },
+    { "region": "West", "intensity": 80, "majority_party": "ADMK", "color": "#2E9362" },
+    { "region": "South", "intensity": 55, "majority_party": "TVK", "color": "#9E3A59" },
+    { "region": "Delta", "intensity": 75, "majority_party": "DMK", "color": "#C75252" }
+  ],
+  "constituency_results": [
+    { "name": "Chennai North", "winner": "DMK", "strength": 85, "lat": 13.12, "lng": 80.28, "type": "circle" },
+    { "name": "Chennai South", "winner": "DMK", "strength": 82, "lat": 13.00, "lng": 80.25, "type": "circle" },
+    { "name": "Coimbatore", "winner": "ADMK", "strength": 82, "lat": 11.01, "lng": 76.95, "type": "diamond" },
+    { "name": "Madurai", "winner": "TVK", "strength": 75, "lat": 9.92, "lng": 78.11, "type": "circle" },
+    { "name": "Salem", "winner": "ADMK", "strength": 78, "lat": 11.66, "lng": 78.14, "type": "diamond" },
+    { "name": "Trichy", "winner": "DMK", "strength": 72, "lat": 10.79, "lng": 78.70, "type": "circle" },
+    { "name": "Vellore", "winner": "TVK", "strength": 68, "lat": 12.91, "lng": 79.13, "type": "circle" },
+    { "name": "Erode", "winner": "ADMK", "strength": 75, "lat": 11.34, "lng": 77.71, "type": "diamond" },
+    { "name": "Tirunelveli", "winner": "TVK", "strength": 60, "lat": 8.71, "lng": 77.75, "type": "circle" },
+    { "name": "Thanjavur", "winner": "DMK", "strength": 88, "lat": 10.78, "lng": 79.13, "type": "circle" },
+    { "name": "Kanyakumari", "winner": "BJP", "strength": 55, "lat": 8.08, "lng": 77.53, "type": "diamond" },
+    { "name": "Thiruvarur", "winner": "DMK", "strength": 92, "lat": 10.77, "lng": 79.64, "type": "circle" },
+    { "name": "Dharmapuri", "winner": "ADMK", "strength": 70, "lat": 12.12, "lng": 78.15, "type": "diamond" },
+    { "name": "Theni", "winner": "ADMK", "strength": 68, "lat": 10.01, "lng": 77.47, "type": "diamond" },
+    { "name": "Cuddalore", "winner": "DMK", "strength": 58, "lat": 11.74, "lng": 79.76, "type": "circle" },
+    { "name": "Karur", "winner": "DMDK", "strength": 52, "lat": 10.96, "lng": 78.07, "type": "diamond" },
+    { "name": "Thoothukudi", "winner": "DMK", "strength": 65, "lat": 8.76, "lng": 78.13, "type": "circle" },
+    { "name": "Kancheepuram", "winner": "DMK", "strength": 71, "lat": 12.83, "lng": 79.70, "type": "circle" },
+    { "name": "Nagapattinam", "winner": "INC", "strength": 54, "lat": 10.76, "lng": 79.84, "type": "circle" },
+    { "name": "Virudhunagar", "winner": "ADMK", "strength": 62, "lat": 9.58, "lng": 77.95, "type": "diamond" }
   ]
 }

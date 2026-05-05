@@ -16,7 +16,7 @@ export const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setAct
   ];
 
   return (
-    <aside className="w-64 border-r border-border p-6 flex flex-col h-screen sticky top-0 bg-background">
+    <aside className="w-64 border-r border-border p-6 flex flex-col h-screen sticky top-0 bg-white">
       <div className="flex items-center gap-3 mb-12">
         <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.5)]">
           <Shield className="text-background" size={24} />
@@ -29,7 +29,7 @@ export const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setAct
           <button 
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`w-full flex items-center gap-4 p-3 rounded-xl transition-all ${activeTab === item.id ? 'bg-primary/10 text-primary border border-primary/20' : 'text-text-muted hover:bg-surface-hover hover:text-foreground'}`}
+            className={`w-full flex items-center gap-4 p-3 rounded-xl transition-all ${activeTab === item.id ? 'bg-primary/5 text-primary border border-primary/20 shadow-sm' : 'text-text-muted hover:bg-surface-hover hover:text-foreground'}`}
           >
             {item.icon}
             <span className="font-semibold text-sm">{item.label}</span>
@@ -56,14 +56,14 @@ export const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setAct
 
 export const Header = () => {
   return (
-    <header className="h-20 border-b border-border px-8 flex items-center justify-between bg-background/50 backdrop-blur-md sticky top-0 z-50">
+    <header className="h-20 border-b border-border px-8 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-50">
       <div className="flex items-center gap-6 flex-1">
         <div className="relative w-96">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
           <input 
             type="text" 
             placeholder="Search by county, pathogen, or variant..." 
-            className="w-full bg-surface border border-border rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-primary transition-all"
+            className="w-full bg-white border border-border rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
           />
         </div>
       </div>
@@ -75,7 +75,7 @@ export const Header = () => {
         <div className="w-px h-8 bg-border mx-2"></div>
         <button 
           onClick={() => alert('Refreshing data from external sources...')}
-          className="flex items-center gap-2 bg-surface hover:bg-surface-hover border border-border text-foreground font-bold px-4 py-2 rounded-lg text-sm transition-all group"
+          className="flex items-center gap-2 bg-primary text-background font-bold px-4 py-2 rounded-lg text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20 group"
         >
           <RefreshCw size={16} className="group-active:rotate-180 transition-transform duration-500" />
           Refresh Data

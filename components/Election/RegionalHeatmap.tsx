@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import electionData from '@/data/election.json';
+import tnGeoJSON from '@/data/tn_districts.json';
 
 const RegionalHeatmap = () => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -13,86 +14,99 @@ const RegionalHeatmap = () => {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
 
-    const width = svgRef.current.clientWidth;
+    const width = 800;
     const height = 350;
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-    
-    const regions = electionData.regional_heatmap;
-    const cellWidth = (width - margin.left - margin.right) / regions.length;
-    
-    const colorScale = d3.scaleSequential(d3.interpolatePuBu)
-      .domain([0, 100]);
 
-    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+    // Projection
+    const projection = d3.geoMercator()
+      .fitSize([width - margin.left - margin.right, height - margin.top - margin.bottom], tnGeoJSON as any);
 
-    const nodes = g.selectAll('g')
-      .data(regions)
+    const pathGenerator = d3.geoPath().projection(projection);
+
+    const g = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+    // Draw TN Districts as Background
+    g.selectAll('.district')
+      .data((tnGeoJSON as any).features)
+      .enter()
+      .append('path')
+      .attr('d', pathGenerator as any)
+      .attr('fill', '#f8fafc')
+      .attr('stroke', '#cbd5e1')
+      .attr('stroke-width', 0.5)
+      .attr('opacity', 0.8);
+
+    // Regional Intensity Markers
+    const regionGeoCenters: Record<string, { lng: number, lat: number }> = {
+      'North': { lng: 79.2, lat: 12.5 },
+      'Central': { lng: 78.6, lat: 10.8 },
+      'West': { lng: 77.2, lat: 11.0 },
+      'South': { lng: 77.8, lat: 9.3 },
+      'Delta': { lng: 79.3, lat: 10.5 }
+    };
+
+    const regionGroups = g.selectAll('.region-group')
+      .data(electionData.regional_heatmap)
       .enter()
       .append('g')
-      .attr('transform', (d, i) => `translate(${i * cellWidth}, 0)`);
+      .attr('class', 'region-group')
+      .attr('transform', d => {
+        const center = regionGeoCenters[d.region];
+        const coords = projection([center.lng, center.lat]);
+        return coords ? `translate(${coords[0]}, ${coords[1]})` : 'translate(-100, -100)';
+      });
 
-    nodes.append('rect')
-      .attr('width', cellWidth - 10)
-      .attr('height', height - margin.top - margin.bottom)
-      .attr('rx', 12)
-      .attr('fill', d => {
-        const party = electionData.party_wise.find(p => p.party === d.majority_party);
-        return party?.color || '#2d3748';
-      })
-      .attr('fill-opacity', d => d.intensity / 100)
-      .attr('stroke', d => {
-        const party = electionData.party_wise.find(p => p.party === d.majority_party);
-        return party?.color || '#2d3748';
-      })
-      .attr('stroke-width', 2);
+    regionGroups.each(function(d) {
+      const regionG = d3.select(this);
+      const color = d.color || '#94a3b8';
+      const radius = (d.intensity / 100) * 40 + 10;
 
-    nodes.append('text')
-      .attr('x', (cellWidth - 10) / 2)
-      .attr('y', 40)
-      .attr('text-anchor', 'middle')
-      .attr('fill', '#fff')
-      .attr('font-weight', 'bold')
-      .attr('font-size', '14px')
-      .text(d => d.region);
+      // Glow effect
+      regionG.append('circle')
+        .attr('r', radius)
+        .attr('fill', color)
+        .attr('opacity', 0.15)
+        .attr('class', 'animate-pulse');
 
-    nodes.append('text')
-      .attr('x', (cellWidth - 10) / 2)
-      .attr('y', 60)
-      .attr('text-anchor', 'middle')
-      .attr('fill', '#8ba3c7')
-      .attr('font-size', '10px')
-      .attr('font-weight', 'bold')
-      .text(d => `INTENSITY: ${d.intensity}%`);
+      // Core bubble
+      regionG.append('circle')
+        .attr('r', 8)
+        .attr('fill', color)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 2)
+        .attr('class', 'shadow-lg');
 
-    nodes.append('text')
-      .attr('x', (cellWidth - 10) / 2)
-      .attr('y', (height - margin.top - margin.bottom) - 40)
-      .attr('text-anchor', 'middle')
-      .attr('fill', '#fff')
-      .attr('font-weight', '900')
-      .attr('font-size', '20px')
-      .text(d => d.majority_party);
+      // Label
+      regionG.append('text')
+        .attr('y', -radius - 15)
+        .attr('text-anchor', 'middle')
+        .attr('fill', '#0f172a')
+        .attr('font-size', '11px')
+        .attr('font-weight', '900')
+        .attr('text-transform', 'uppercase')
+        .text(d.region);
 
-    nodes.append('circle')
-      .attr('cx', (cellWidth - 10) / 2)
-      .attr('cy', (height - margin.top - margin.bottom) / 2)
-      .attr('r', d => (d.intensity / 100) * 40)
-      .attr('fill', '#fff')
-      .attr('fill-opacity', 0.1)
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 1)
-      .attr('stroke-dasharray', '4,2');
+      // Dominance Text
+      regionG.append('text')
+        .attr('y', -radius - 5)
+        .attr('text-anchor', 'middle')
+        .attr('fill', color)
+        .attr('font-size', '10px')
+        .attr('font-weight', 'bold')
+        .text(`${d.majority_party} ${d.intensity}%`);
+    });
 
   }, []);
 
   return (
-    <div className="glass-card p-6 h-[400px]">
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-bold">Regional Majority Intensity Heatmap</h3>
-        <span className="badge badge-primary text-[10px] font-mono">D3.js SVG Engine</span>
+    <div className="glass-card p-6 h-full flex flex-col border-t-8 border-secondary shadow-xl overflow-hidden bg-white">
+      <div className="mb-4">
+        <h3 className="text-xl font-black text-foreground tracking-tighter uppercase">Regional Majority Heatmap</h3>
+        <p className="text-text-muted text-xs font-medium italic">Geographic Intensity of Political Sentiment</p>
       </div>
-      <div className="w-full overflow-hidden">
-        <svg ref={svgRef} width="100%" height="350" />
+      <div className="flex-1 flex justify-center items-center bg-slate-50/50 rounded-2xl border border-border-soft overflow-hidden">
+        <svg ref={svgRef} viewBox="0 0 800 350" className="w-full h-full" />
       </div>
     </div>
   );
