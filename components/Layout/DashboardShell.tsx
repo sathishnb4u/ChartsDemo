@@ -21,7 +21,7 @@ export const Sidebar = ({ activeTab, setActiveTab }: { activeTab: string, setAct
         <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.5)]">
           <Shield className="text-background" size={24} />
         </div>
-        <h1 className="text-xl font-bold tracking-tighter">LUNGFISH</h1>
+        <h1 className="text-xl font-bold tracking-tighter">CHART VIZ PRO</h1>
       </div>
       
       <nav className="flex-1 space-y-2">

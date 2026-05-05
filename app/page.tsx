@@ -53,7 +53,7 @@ const TechBadge = ({ tech }: { tech: 'D3' | 'ECharts' }) => (
 );
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('surveillance');
+  const [activeTab, setActiveTab] = useState('about');
   const [selectedPathogen, setSelectedPathogen] = useState<string | null>(null);
 
   const renderContent = () => {
@@ -93,7 +93,7 @@ export default function Home() {
         return (
           <div className="col-span-12 grid grid-cols-12 gap-8">
             <div className="col-span-12 lg:col-span-6">
-               <div className="mb-4 flex items-center justify-between"><h2 className="text-xl font-bold">Air Quality Trends (Madison)</h2><TechBadge tech="ECharts" /></div>
+               <div className="mb-4 flex items-center justify-between"><h2 className="text-xl font-bold">Air Quality Trends</h2><TechBadge tech="ECharts" /></div>
                <AQICandlestick />
             </div>
             <div className="col-span-12 lg:col-span-6">
@@ -135,11 +135,11 @@ export default function Home() {
                <DataFlowSankey />
             </div>
             <div className="col-span-12 glass-card p-12 text-center flex flex-col items-center gap-6">
-              <Microscope size={48} className="text-primary" />
-              <div>
-                <h2 className="text-2xl font-bold mb-2">Lab Performance Metrics</h2>
-                <p className="text-text-muted max-w-xl mx-auto">Tracking sequencing turnaround time, sample quality passing rates, and multi-lab synchronization status.</p>
-              </div>
+               <Microscope size={48} className="text-primary" />
+               <div>
+                 <h2 className="text-2xl font-bold mb-2">Lab Performance Metrics</h2>
+                 <p className="text-text-muted max-w-xl mx-auto">Tracking sequencing turnaround time, sample quality passing rates, and multi-lab synchronization status.</p>
+               </div>
             </div>
           </div>
         );
@@ -156,70 +156,6 @@ export default function Home() {
             </div>
           </div>
         );
-      case 'about':
-        return (
-          <div className="col-span-12 flex flex-col gap-8">
-            <div className="glass-card p-12 text-center flex flex-col items-center gap-6">
-              <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-background shadow-lg shadow-primary/20"><Info size={32} /></div>
-              <div>
-                <h2 className="text-3xl font-bold mb-2">About Lungfish Portal</h2>
-                <p className="text-text-muted max-w-2xl mx-auto">A state-of-the-art surveillance platform designed for the O&apos;Connor Lab to monitor environmental pathogens and laboratory throughput.</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="glass-card p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <Terminal className="text-primary" size={24} />
-                  <h3 className="text-xl font-bold">Technical Architecture</h3>
-                </div>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Layers size={16} /> Visualization Engines</h4>
-                    <p className="text-sm text-text-muted">Dual-engine strategy using <strong>D3.js</strong> for bespoke mathematical SVGs and <strong>Apache ECharts</strong> for high-density canvas-based dashboards.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Cpu size={16} /> Framework & State</h4>
-                    <p className="text-sm text-text-muted">Built with <strong>Next.js 15+</strong> (App Router) and <strong>TypeScript</strong>. State is managed via React Hooks with strict type safety for scientific data models.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Palette size={16} /> UI/UX Philosophy</h4>
-                    <p className="text-sm text-text-muted">Modern <strong>Glassmorphism</strong> design system using vanilla CSS. Custom utility classes for responsive grids and high-contrast accessibility.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Zap size={16} /> Real-time Interactivity</h4>
-                    <p className="text-sm text-text-muted">Cross-chart filtering using shared React state. Selecting a pathogen in one series filters all related dashboard components instantly.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="glass-card p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <Database className="text-secondary" size={24} />
-                  <h3 className="text-xl font-bold">Data & Page Logic</h3>
-                </div>
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
-                    <h4 className="text-sm font-bold mb-1">Surveillance Page</h4>
-                    <p className="text-xs text-text-muted">Real-time pathogen tracking (ECharts) + Variant wave modeling (D3).</p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
-                    <h4 className="text-sm font-bold mb-1">Environmental Page</h4>
-                    <p className="text-xs text-text-muted">Air quality index analysis using Candlestick and Density Heatmaps.</p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
-                    <h4 className="text-sm font-bold mb-1">Public Health Page</h4>
-                    <p className="text-xs text-text-muted">Clinical-Environmental correlation with mathematical regression plotting.</p>
-                  </div>
-                  <div className="p-4 rounded-xl bg-surface-hover border border-soft">
-                    <h4 className="text-sm font-bold mb-1">Lab Metrics Page</h4>
-                    <p className="text-xs text-text-muted">Throughput analysis using Funnel and Sankey flow diagrams.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
       case 'geospatial':
         return (
           <div className="col-span-12 grid grid-cols-12 gap-8">
@@ -233,7 +169,6 @@ export default function Home() {
       case 'election':
         return (
           <div className="col-span-12 grid grid-cols-12 gap-8">
-            {/* Header & Refresh */}
             <div className="col-span-12 flex flex-col md:flex-row md:items-center justify-between gap-6 mb-4">
               <div>
                 <div className="flex items-center gap-3 mb-2">
@@ -245,37 +180,19 @@ export default function Home() {
                   <Database size={14} /> Source: Election Commission of India (Official)
                 </p>
               </div>
-              <button 
-                onClick={() => {
-                  alert('Refreshing data from ECI servers...');
-                }}
-                className="flex items-center gap-3 px-6 py-3 bg-primary text-white hover:opacity-90 rounded-2xl transition-all font-bold text-sm group shadow-lg shadow-primary/20"
-              >
+              <button onClick={() => alert('Refreshing data...')} className="flex items-center gap-3 px-6 py-3 bg-primary text-white hover:opacity-90 rounded-2xl transition-all font-bold text-sm group shadow-lg shadow-primary/20">
                 <RefreshCw size={18} className="group-active:rotate-180 transition-transform duration-500" />
                 REFRESH ECI DATA
               </button>
             </div>
-
-            {/* Key Stats */}
             <div className="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-6">
               <StatCard title="Lead Party (TVK)" value="107 / 234" trend="+TVK" icon={<Trophy size={24} />} color="#ff42b3" />
               <StatCard title="Majority Mark" value="118 Seats" trend="Fixed" icon={<Gavel size={24} />} color="#7042ff" />
               <StatCard title="Voter Turnout" value="78.4%" trend="+4.2%" icon={<Users size={24} />} color="#00d4ff" />
               <StatCard title="Result Status" value="In Progress" trend="85% Decided" icon={<Activity size={24} />} color="#ffb800" />
             </div>
-
-            {/* Main Section: Majority Simulator */}
-            <div className="col-span-12 lg:col-span-6">
-              <MajoritySimulator />
-            </div>
-
-            {/* Side Section: Summary Charts */}
-            <div className="col-span-12 lg:col-span-6 grid grid-cols-1 gap-6">
-              <VoteShareChart />
-              <PartyDominationChart />
-            </div>
-
-            {/* Heatmap Section */}
+            <div className="col-span-12 lg:col-span-6"><MajoritySimulator /></div>
+            <div className="col-span-12 lg:col-span-6 grid grid-cols-1 gap-6"><VoteShareChart /><PartyDominationChart /></div>
             <div className="col-span-12">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-xl font-bold flex items-center gap-2"><MapIcon size={20} className="text-secondary" /> Regional Majority Heatmap</h2>
@@ -283,30 +200,166 @@ export default function Home() {
               </div>
               <RegionalHeatmap />
             </div>
-
-            {/* Age Analysis Section */}
-            <div className="col-span-12 lg:col-span-6">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold flex items-center gap-2"><Users size={20} className="text-primary" /> Age Demographics</h2>
-                <TechBadge tech="ECharts" />
+            <div className="col-span-12 lg:col-span-6"><AgeVoterDistribution /></div>
+            <div className="col-span-12 lg:col-span-6"><AgeGroupPartyShare /></div>
+            <div className="col-span-12 mt-8"><ConstituencyMap /></div>
+          </div>
+        );
+      case 'about':
+        return (
+          <div className="col-span-12 flex flex-col gap-8 pb-12">
+            <div className="glass-card p-12 text-center flex flex-col items-center gap-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-none">
+              <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-background shadow-lg shadow-primary/20"><Info size={32} /></div>
+              <div>
+                <h2 className="text-4xl font-black mb-2 tracking-tighter">DASHBOARD DIRECTORY</h2>
+                <p className="text-text-muted max-w-2xl mx-auto font-medium">A comprehensive guide to the modules and visualization engines powering Chart Viz Pro.</p>
               </div>
-              <AgeVoterDistribution />
             </div>
-            <div className="col-span-12 lg:col-span-6">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold flex items-center gap-2"><BarChart3 size={20} className="text-secondary" /> Party Share by Age</h2>
-                <TechBadge tech="ECharts" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Election */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-primary">
+                <div className="flex items-center gap-3"><Zap className="text-primary" size={20} /><h3 className="font-bold uppercase tracking-tight">Election 2026</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase mb-1">Interactive Simulator</p>
+                    <p className="text-xs text-text-muted">D3-based coalition builder with dynamic seat threshold logic.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase mb-1">Geospatial Mapping</p>
+                    <p className="text-xs text-text-muted">High-precision GeoJSON boundaries with district-level Lat/Lng plotting.</p>
+                  </div>
+                </div>
               </div>
-              <AgeGroupPartyShare />
+
+              {/* Surveillance */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-secondary">
+                <div className="flex items-center gap-3"><Activity className="text-secondary" size={20} /><h3 className="font-bold uppercase tracking-tight">Surveillance</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-secondary uppercase mb-1">Pathogen Trends</p>
+                    <p className="text-xs text-text-muted">ECharts multi-series area charts for real-time viral load tracking.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-secondary uppercase mb-1">Regional Alerts</p>
+                    <p className="text-xs text-text-muted">Priority-sorted status cards for county-level pathogen detection.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Environmental */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-accent">
+                <div className="flex items-center gap-3"><Droplets className="text-accent" size={20} /><h3 className="font-bold uppercase tracking-tight">Environmental</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-accent uppercase mb-1">AQI Volatility</p>
+                    <p className="text-xs text-text-muted">Candlestick charts (ECharts) visualizing air quality index fluctuations.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-accent uppercase mb-1">Detection Matrix</p>
+                    <p className="text-xs text-text-muted">Heatmap-based density matrix for pathogen concentration levels.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lab Metrics */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-primary">
+                <div className="flex items-center gap-3"><Database className="text-primary" size={20} /><h3 className="font-bold uppercase tracking-tight">Lab Metrics</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase mb-1">Pipeline Throughput</p>
+                    <p className="text-xs text-text-muted">ECharts funnel diagrams for sample processing efficiency.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase mb-1">Data Synchronization</p>
+                    <p className="text-xs text-text-muted">Sankey flow diagrams visualizing internal data sync between nodes.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Public Health */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-secondary">
+                <div className="flex items-center gap-3"><Users className="text-secondary" size={20} /><h3 className="font-bold uppercase tracking-tight">Public Health</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-secondary uppercase mb-1">Variant Waves</p>
+                    <p className="text-xs text-text-muted">Bespoke D3-mathematical wave modeling for genomic evolution.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-secondary uppercase mb-1">Health Correlation</p>
+                    <p className="text-xs text-text-muted">D3 scatter plotting with integrated linear regression lines.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Geospatial */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-accent">
+                <div className="flex items-center gap-3"><MapIcon className="text-accent" size={20} /><h3 className="font-bold uppercase tracking-tight">Geospatial</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-accent uppercase mb-1">Spatial Projection</p>
+                    <p className="text-xs text-text-muted">Custom D3-geo projections for Wisconsin county-level distribution.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-accent uppercase mb-1">Heat Intensity</p>
+                    <p className="text-xs text-text-muted">Area-weighted intensity mapping for geographic pathogen load.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Analytics */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-primary">
+                <div className="flex items-center gap-3"><BarChart3 className="text-primary" size={20} /><h3 className="font-bold uppercase tracking-tight">Analytics</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase mb-1">Multi-Domain Synthesis</p>
+                    <p className="text-xs text-text-muted">Aggregated views synthesizing environmental and genomic datasets.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase mb-1">Pathogen Profiles</p>
+                    <p className="text-xs text-text-muted">Radar charts visualizing multidimensional biological characteristics.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hierarchy */}
+              <div className="glass-card p-6 flex flex-col gap-4 border-l-4 border-secondary">
+                <div className="flex items-center gap-3"><Layers className="text-secondary" size={20} /><h3 className="font-bold uppercase tracking-tight">Hierarchy</h3></div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] font-black text-secondary uppercase mb-1">Source Distribution</p>
+                    <p className="text-xs text-text-muted">D3 hierarchical Treemaps visualizing data source weights.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-secondary uppercase mb-1">Engine Balance</p>
+                    <p className="text-xs text-text-muted">Optimized hybrid usage of SVG (D3) and Canvas (ECharts) rendering.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Constituency Map Section */}
-            <div className="col-span-12 mt-8">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold flex items-center gap-2"><MapIcon size={20} className="text-primary" /> Constituency Strength Map</h2>
-                <TechBadge tech="D3" />
-              </div>
-              <ConstituencyMap />
+            {/* Technical Footer */}
+            <div className="glass-card p-8 bg-surface border-none shadow-inner">
+               <div className="flex flex-col md:flex-row items-center gap-12">
+                 <div className="flex-1 space-y-4">
+                    <h4 className="text-xl font-bold flex items-center gap-2"><Terminal size={20} className="text-primary" /> Technical Architecture</h4>
+                    <p className="text-sm text-text-muted leading-relaxed">Chart Viz Pro is built on <strong>Next.js 15</strong> and <strong>TypeScript</strong>. It employs a sophisticated state-sharing architecture that enables cross-component interaction, where selecting a data point in an ECharts area chart instantly re-projects a D3 geospatial map.</p>
+                 </div>
+                 <div className="flex gap-4">
+                    <div className="px-6 py-4 rounded-2xl bg-white border border-soft flex flex-col items-center">
+                      <span className="text-2xl font-black text-primary">12+</span>
+                      <span className="text-[10px] font-bold text-text-muted uppercase">Advanced Charts</span>
+                    </div>
+                    <div className="px-6 py-4 rounded-2xl bg-white border border-soft flex flex-col items-center">
+                      <span className="text-2xl font-black text-secondary">2</span>
+                      <span className="text-[10px] font-bold text-text-muted uppercase">Render Engines</span>
+                    </div>
+                    <div className="px-6 py-4 rounded-2xl bg-white border border-soft flex flex-col items-center">
+                      <span className="text-2xl font-black text-accent">100%</span>
+                      <span className="text-[10px] font-bold text-text-muted uppercase">Type Safe</span>
+                    </div>
+                 </div>
+               </div>
             </div>
           </div>
         );

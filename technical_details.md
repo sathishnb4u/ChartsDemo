@@ -1,6 +1,6 @@
-# Technical Details: Lungfish Portal
+# Technical Details: Chart Viz Pro
 
-This document outlines the architectural decisions and technical implementations used in the Lungfish Portal.
+This document outlines the architectural decisions and technical implementations used in the Chart Viz Pro Dashboard.
 
 ## 1. Visualization Libraries
 

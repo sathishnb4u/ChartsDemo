@@ -13,8 +13,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lungfish Portal | O'Connor Lab Environmental Surveillance",
-  description: "Advanced environmental monitoring and public health surveillance dashboard for the Lungfish project at UW-Madison.",
+  title: "Chart Viz Pro | Advanced Data Visualization Showcase",
+  description: "A professional demonstration of advanced charting capabilities using D3.js and Apache ECharts.",
 };
 
 export default function RootLayout({

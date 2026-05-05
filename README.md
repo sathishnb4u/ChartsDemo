@@ -1,9 +1,8 @@
-# Lungfish Portal: Environmental Surveillance Dashboard
+# Chart Viz Pro: Advanced Data Visualization Dashboard
 
-A professional, data-driven web application built for the **O'Connor Lab (UW-Madison)** to visualize environmental monitoring and public health datasets.
+---
 
-## 🚀 Overview
-The Lungfish Portal integrates multi-dimensional scientific data—including wastewater surveillance, genomic variant waves, and air quality metrics—into a high-end, interactive dashboard. It showcases advanced technical proficiency in **D3.js** and **Apache ECharts** within a modern **Next.js** architecture.
+The Chart Viz Pro dashboard integrates multi-dimensional data—including election results, wastewater surveillance, and air quality metrics—into a high-end, interactive showcase. It demonstrates advanced technical proficiency in **D3.js** and **Apache ECharts** within a modern **Next.js** architecture.
 
 ## ✨ Key Features
 - **Pathogen Surveillance**: Real-time tracking of SARS-CoV-2, Influenza, and RSV.
